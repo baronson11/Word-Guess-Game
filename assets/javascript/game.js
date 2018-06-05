@@ -14,6 +14,12 @@ let wins = 0;
 let losses = 0;
 let numGuesses = 10;
 
+// DOM
+// const begin = document.getElementById('begin');
+// begin.addEventListener('keypress' () => {
+//   begin.style.display = 'none';
+// });
+
 // Funcs
 function startGame() {
   numGuesses = 10;
@@ -31,6 +37,7 @@ function startGame() {
   document.getElementById("guesses-left").innerHTML = numGuesses;
   document.getElementById("word-blanks").innerHTML = blanksAndWins.join(" ");
   document.getElementById("wrong-guesses").innerHTML = wrongGuesses.join(" ");
+
 }
 
 function checkLetters(letter) {
