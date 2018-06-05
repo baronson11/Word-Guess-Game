@@ -1,4 +1,26 @@
 body {
   margin: auto;
   background-color: #e4e4e4;
+  font-size: 2em;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.logo {
+  padding: 300px;
+  background-color: red;
+  background: linear-gradient(0deg, #e4e4e4, transparent 5%),
+              red url('../images/supermariobros.jpg');
+}
+
+.start {
+
+}
+
+.words {
+
+}
+
+.guesses {
+
 }

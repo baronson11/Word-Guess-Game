@@ -10,15 +10,31 @@
 <body>
   <header>
     <div class="logo">
-      <img src="assets/images/supermariobros.jpg" alt="super hangman" title="super hangman">
     </div>
   </header>
-  <div class="">
 
-  </div>
-  <div class="">
+  <section class="start">
+    <p>Click on any button to begin!</p>
+  </section>
 
-  </div>
+  </section>
+  <section class="words">
+    <h3 id="word-blanks">_ _ _ _ _ _ _ _ _ </h3>
+  </section>
+  <section class="results">
+      <div class="wrong">
+        <strong>Wrong Guesses: </strong> <span id="wrong-guesses"></span>
+      </div>
+      <div class="guesses">
+        <strong>Guesses Left: </strong> <span id="guesses-left">9</span>
+      </div>
+      <div class="wins">
+        <strong>Wins: </strong> <span id="win-counter">0</span>
+      </div>
+      <div class="losses">
+        <strong>Losses: </strong> <span id="loss-counter">0</span>
+      </div>
+  </section>
   <script src="assets/javascript/game.js"></script>
 </body>
 </html>
