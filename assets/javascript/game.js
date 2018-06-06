@@ -1,7 +1,7 @@
 // Globals
 let gamesList = ["metalgearsolid", "elderscrollsonline", "callofduty",
 "supermariobros", "thewitcher", "watchdogs", "supermeatboy",
-"skyrim"];
+"skyrim", "playerunknownbattlegrounds", "overwatch", "fallout", "tombraider", "thedivision"];
 let chosenGame = "";
 let letters = [];
 let blanks = 0;
@@ -14,20 +14,16 @@ let wins = 0;
 let losses = 0;
 let numGuesses = 10;
 
-// DOM
-// const begin = document.getElementById('begin');
-// begin.addEventListener('keypress' () => {
-//   begin.style.display = 'none';
-// });
+// Functions
 
-// Funcs
-
+// prints results to section
 function printResults() {
   document.getElementById("guesses-left").innerHTML = numGuesses;
   document.getElementById("word-blanks").innerHTML = blanksAndWins.join(" ");
   document.getElementById("wrong-guesses").innerHTML = wrongGuesses.join(" ");
 }
 
+// starts game
 function startGame() {
   numGuesses = 10;
   chosenGame = gamesList[Math.floor(Math.random() * gamesList.length)];
@@ -42,6 +38,7 @@ function startGame() {
   printResults();
 }
 
+// checks letters for each guess
 function checkLetters(letter) {
   var letterInWord = false;
   for (var i = 0; i < blanks; i++) {
@@ -62,17 +59,20 @@ function checkLetters(letter) {
   }
 }
 
+//determines wins and losses, plays sound
 function roundComplete() {
   printResults();
   if (letters.toString() === blanksAndWins.toString()) {
+    new Audio('assets/sounds/winning.mp3').play();
     wins++;
-    alert("You win!");
+    document.getElementById("status").innerHTML = 'You Win!';
     document.getElementById("win-counter").innerHTML = wins;
     startGame();
   }
   else if (numGuesses === 0) {
+    new Audio('assets/sounds/losing.mp3').play();
     losses++;
-    alert("You lose");
+    document.getElementById("status").innerHTML = 'You Lose!';
     document.getElementById("loss-counter").innerHTML = losses;
     startGame();
   }
