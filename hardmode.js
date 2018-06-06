@@ -52,15 +52,18 @@ const hangman = {
 
   roundComplete: function() {
     hangman.printResults();
-    if (hangman.letters.toString() === hangman.blanksAndWins.toString()) {
-      hangman.wins++;
-      alert("You win!");
-      document.getElementById("win-counter").innerHTML = hangman.wins;
+    printResults();
+    if (letters.toString() === blanksAndWins.toString()) {
+      new Audio('assets/sounds/winning.mp3').play();
+      wins++;
+      document.getElementById("status").innerHTML = 'You Win!';
+      document.getElementById("win-counter").innerHTML = wins;
       startGame();
-    } else if (hangman.numGuesses === 0) {
-      hangman.losses++;
-      alert("You lose");
-      document.getElementById("loss-counter").innerHTML = hangman.losses;
+    } else if (numGuesses === 0) {
+      new Audio('assets/sounds/losing.mp3').play();
+      losses++;
+      document.getElementById("status").innerHTML = 'You Lose!';
+      document.getElementById("loss-counter").innerHTML = losses;
       startGame();
     }
   }
