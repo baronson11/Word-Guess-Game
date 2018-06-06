@@ -21,6 +21,13 @@ let numGuesses = 10;
 // });
 
 // Funcs
+
+function printResults() {
+  document.getElementById("guesses-left").innerHTML = numGuesses;
+  document.getElementById("word-blanks").innerHTML = blanksAndWins.join(" ");
+  document.getElementById("wrong-guesses").innerHTML = wrongGuesses.join(" ");
+}
+
 function startGame() {
   numGuesses = 10;
   chosenGame = gamesList[Math.floor(Math.random() * gamesList.length)];
@@ -32,12 +39,7 @@ function startGame() {
   for (var i = 0; i < blanks; i++) {
     blanksAndWins.push("_");
   }
-
-  console.log(blanksAndWins);
-  document.getElementById("guesses-left").innerHTML = numGuesses;
-  document.getElementById("word-blanks").innerHTML = blanksAndWins.join(" ");
-  document.getElementById("wrong-guesses").innerHTML = wrongGuesses.join(" ");
-
+  printResults();
 }
 
 function checkLetters(letter) {
@@ -61,10 +63,7 @@ function checkLetters(letter) {
 }
 
 function roundComplete() {
-  console.log("WinCount: " + wins + " | LossCount: " + losses + " | NumGuesses: " + numGuesses);
-  document.getElementById("guesses-left").innerHTML = numGuesses;
-  document.getElementById("word-blanks").innerHTML = blanksAndWins.join(" ");
-  document.getElementById("wrong-guesses").innerHTML = wrongGuesses.join(" ");
+  printResults();
   if (letters.toString() === blanksAndWins.toString()) {
     wins++;
     alert("You win!");
