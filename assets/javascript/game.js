@@ -32,7 +32,7 @@ function startGame() {
   blanksAndWins = [];
   wrongGuesses = [];
 
-  for (var i = 0; i < blanks; i++) {
+  for (let i = 0; i < blanks; i++) {
     blanksAndWins.push("_");
   }
   printResults();
@@ -41,13 +41,13 @@ function startGame() {
 // checks letters for each guess
 function checkLetters(letter) {
   var letterInWord = false;
-  for (var i = 0; i < blanks; i++) {
+  for (let i = 0; i < blanks; i++) {
     if (chosenGame[i] === letter) {
       letterInWord = true;
     }
   }
   if (letterInWord) {
-    for (var j = 0; j < blanks; j++) {
+    for (let j = 0; j < blanks; j++) {
       if (chosenGame[j] === letter) {
         blanksAndWins[j] = letter;
       }
