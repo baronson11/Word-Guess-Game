@@ -9,20 +9,22 @@ let wrongGuesses = [];
 let lettersGuessed = "";
 let chosenGame = "";
 
-// Counters
+// More Globals - Counters
 let wins = 0;
 let losses = 0;
 let numGuesses = 10;
 
 
-// Prints results to page
+// IMPORTANT: Prints results to page - leave this above object so that when startGame runs
+// this is already loaded!!!
+
 function printResults() {
   document.getElementById("guesses-left").innerHTML = numGuesses;
   document.getElementById("word-blanks").innerHTML = blanksAndWins.join(" ");
   document.getElementById("wrong-guesses").innerHTML = wrongGuesses.join(" ");
 }
 
-// Object with methods to start and end the game
+// Hangman object with methods to start game, check letters and end the game
 const hangman = {
 
   startGame: function() {
@@ -38,6 +40,25 @@ const hangman = {
     }
     printResults();
   },
+
+  checkLetters: function(letter) {
+     let letterInWord = false;
+     for (let i = 0; i < blanks; i++) {
+       if (chosenGame[i] === letter) {
+         letterInWord = true;
+       }
+     }
+     if (letterInWord) {
+       for (let x = 0; x < blanks; x++) {
+         if (chosenGame[x] === letter) {
+           blanksAndWins[x] = letter;
+         }
+       }
+     } else {
+       wrongGuesses.push(letter);
+       numGuesses--;
+     }
+   },
 
   endGame: function() {
     printResults();
@@ -58,30 +79,12 @@ const hangman = {
 };
 // end hangman object
 
-// function to check each letter for matches
- function checkLetters(letter) {
-    let letterInWord = false;
-    for (let i = 0; i < blanks; i++) {
-      if (chosenGame[i] === letter) {
-        letterInWord = true;
-      }
-    }
-    if (letterInWord) {
-      for (let x = 0; x < blanks; x++) {
-        if (chosenGame[x] === letter) {
-          blanksAndWins[x] = letter;
-        }
-      }
-    } else {
-      wrongGuesses.push(letter);
-      numGuesses--;
-    }
-  }
 
-// Run program!
+// Run program! leave this here!!!! must be able to refer to methods in object
+// object needs to load first
 hangman.startGame();
 document.onkeyup = function(event) {
   lettersGuessed = String.fromCharCode(event.which).toLowerCase();
-  checkLetters(lettersGuessed);
+  hangman.checkLetters(lettersGuessed);
   hangman.endGame();
 };
