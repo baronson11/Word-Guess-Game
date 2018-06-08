@@ -33,7 +33,7 @@ const hangman = {
     blanksAndWins = [];
     wrongGuesses = [];
 
-    for (var i = 0; i < blanks; i++) {
+    for (let i = 0; i < blanks; i++) {
       blanksAndWins.push("_");
     }
     printResults();
@@ -61,13 +61,13 @@ const hangman = {
 // function to check each letter for matches
  function checkLetters(letter) {
     let letterInWord = false;
-    for (var i = 0; i < blanks; i++) {
+    for (let i = 0; i < blanks; i++) {
       if (chosenGame[i] === letter) {
         letterInWord = true;
       }
     }
     if (letterInWord) {
-      for (var x = 0; x < blanks; x++) {
+      for (let x = 0; x < blanks; x++) {
         if (chosenGame[x] === letter) {
           blanksAndWins[x] = letter;
         }
