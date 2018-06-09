@@ -51,10 +51,12 @@ const hangman = {
      if (letterInWord) {
        for (let x = 0; x < blanks; x++) {
          if (chosenGame[x] === letter) {
+           new Audio('assets/sounds/Ding.mp3').play();
            blanksAndWins[x] = letter;
          }
        }
      } else {
+       new Audio('assets/sounds/Buzzer.mp3').play();
        wrongGuesses.push(letter);
        numGuesses--;
      }
@@ -79,10 +81,11 @@ const hangman = {
 };
 // end hangman object
 
-// Function calls + event listener for key presses! leave this here!!!! must be able to refer to methods in object
+// Function call + event listener for key presses! leave this here!!!! must be able to refer to methods in object
 // object needs to load first
 
 hangman.startGame();
+
 document.addEventListener('keypress', (event) => {
   lettersGuessed = String.fromCharCode(event.which).toLowerCase();
   hangman.checkLetters(lettersGuessed);
