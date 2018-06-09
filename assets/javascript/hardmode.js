@@ -8,15 +8,15 @@ let blanksAndWins = [];
 let wrongGuesses = [];
 let lettersGuessed = "";
 let chosenGame = "";
+let space = " ";
 
 // More Globals - Counters
 let wins = 0;
 let losses = 0;
 let numGuesses = 10;
 
-
 // IMPORTANT: Prints results to page - leave this above object so that when startGame runs
-// this is already loaded!!!
+// this is already loaded!!! or wrap in 'DOMContentLoaded'...
 
 function printResults() {
   document.getElementById("guesses-left").innerHTML = numGuesses;
@@ -79,12 +79,23 @@ const hangman = {
 };
 // end hangman object
 
-
-// Run program! leave this here!!!! must be able to refer to methods in object
+// Function calls + event listener for key presses! leave this here!!!! must be able to refer to methods in object
 // object needs to load first
+
 hangman.startGame();
-document.onkeyup = function(event) {
+document.addEventListener('keypress', (event) => {
   lettersGuessed = String.fromCharCode(event.which).toLowerCase();
   hangman.checkLetters(lettersGuessed);
   hangman.endGame();
-};
+});
+
+// TESTING ONLY. assuming all words in in two dimensional arrays
+// randomGame: function() {
+//   for(let y = 0; y < gamesList.length; y++) {
+//     chosenGame = gamePick[Math.floor(Math.random() * gamePick.length)];
+//
+//     for (let w = 0; w < gamePick.length; w++) {
+//       let gamePick = gamesList[y];
+//     }
+//   }
+// },
