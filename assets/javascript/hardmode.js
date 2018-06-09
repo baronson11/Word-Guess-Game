@@ -8,14 +8,14 @@ let blanksAndWins = [];
 let wrongGuesses = [];
 let lettersGuessed = "";
 let chosenGame = "";
-let space = " ";
+// let space = " ";
 
 // More Globals - Counters
 let wins = 0;
 let losses = 0;
 let numGuesses = 10;
 
-// IMPORTANT: Prints results to page - leave this above object so that when startGame runs
+// IMPORTANT: Leave this above object so that when startGame runs
 // this is already loaded!!! or wrap in 'DOMContentLoaded'...
 
 function printResults() {
@@ -24,7 +24,23 @@ function printResults() {
   document.getElementById("wrong-guesses").innerHTML = wrongGuesses.join(" ");
 }
 
-// Hangman object with methods to start game, check letters and end the game
+function gameWon() {
+  new Audio('assets/sounds/winning.mp3').play();
+  wins++;
+  document.getElementById("status").innerHTML = 'You Win!';
+  document.getElementById("win-counter").innerHTML = wins;
+  hangman.startGame();
+}
+
+function gameLost() {
+  new Audio('assets/sounds/losing.mp3').play();
+  losses++;
+  document.getElementById("status").innerHTML = 'You Lose!';
+  document.getElementById("loss-counter").innerHTML = losses;
+  hangman.startGame();
+}
+
+// IMPORTANT: Hangman object below! with methods to start game, check letters and end the game
 const hangman = {
 
   startGame: function() {
@@ -65,23 +81,15 @@ const hangman = {
   endGame: function() {
     printResults();
     if (letters.toString() === blanksAndWins.toString()) {
-      new Audio('assets/sounds/winning.mp3').play();
-      wins++;
-      document.getElementById("status").innerHTML = 'You Win!';
-      document.getElementById("win-counter").innerHTML = wins;
-      hangman.startGame();
+      gameWon();
     } else if (numGuesses === 0) {
-      new Audio('assets/sounds/losing.mp3').play();
-      losses++;
-      document.getElementById("status").innerHTML = 'You Lose!';
-      document.getElementById("loss-counter").innerHTML = losses;
-      hangman.startGame();
+      gameLost();
     }
   }
 };
-// end hangman object
+// .../end hangman object
 
-// Function call + event listener for key presses! leave this here!!!! must be able to refer to methods in object
+// Function call to start game + event listener for key presses! leave this here!!!! must be able to refer to methods in object
 // object needs to load first
 
 hangman.startGame();
@@ -92,7 +100,11 @@ document.addEventListener('keypress', (event) => {
   hangman.endGame();
 });
 
-// TESTING ONLY. assuming all words in in two dimensional arrays
+// DONT INCLUDE THIS STUFF ---------------------------------------------------------------------
+
+// TESTING ONLY. assumed all words are in two dimensional arrays - attempted spacing with strings in gamesList.
+// functional but only selects one word from a phrase.
+
 // randomGame: function() {
 //   for(let y = 0; y < gamesList.length; y++) {
 //     chosenGame = gamePick[Math.floor(Math.random() * gamePick.length)];
